@@ -1,4 +1,5 @@
-require 'sinatra'
+
+# require 'byebug'
 
 get '/' do
 	@urls = Url.all
@@ -7,11 +8,26 @@ end
 
 post '/urls' do
 	# create new url
-	@new_url = Url.new(long_url: params[:long_url]).save
+	@new_url = Url.new(long_url: params[:long_url])
+	@new_url.shorten
+	@new_url.save
+
+	redirect '/success' # Redirect users to a new page
 end
 
-get '/:short_url' do
-	Url.shorten 
-	# Redirect to appropriate "Long" url
-	redirect '/urls'
+get '/success' do
+	erb :"static/success"
 end
+
+
+get '/:short_url' do # put : will become params
+	@url = Url.find_by(short_url: params[:short_url])
+	redirect "#{@url.long_url}"
+end
+
+=begin
+get '/:name' #status, if users type any string in the end of the url it will pass this method
+	@name = params[:name]
+	erb: "static/success"	
+end	
+=end

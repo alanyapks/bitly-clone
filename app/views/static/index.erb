@@ -16,3 +16,8 @@
 		<li><%= url.long_url %></li> 
 	<% end%>
 </ul>
+<ul>
+	<% @urls.each do |url| %> 
+ 		<li><%= url.short_url %></li>
+	<% end%>
+</ul>
