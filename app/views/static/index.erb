@@ -1,8 +1,18 @@
 <h1>Hello World</h1>
 <p>Hi this is me</p>
 <p>See Me in views/static/index.html.erb</p>
-<form action="#" method="">
+<%# The action refer to method in controller%>
+<%# Where method is HTTP method %>
+<form action="/urls" method="post">
 	Enter URL:
 	<input type = "text" name = "long_url">
-	<input type = "submit" value = "Submit"
+	<input type = "submit" value = "Submit">
 </form>
+
+<ul>
+<%# The reason use each do is because the @urls is an array%>
+	<% @urls.each do |url| %> 
+<%# The equal sign is to display that line of code%>
+		<li><%= url.long_url %></li> 
+	<% end%>
+</ul>
