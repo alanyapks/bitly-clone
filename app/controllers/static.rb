@@ -3,6 +3,8 @@
 
 get '/' do
 	@urls = Url.all
+	puts "[LOG] Getting /"
+	puts "[LOG] Params: #{params.inspect}"
   erb :"static/index"
 end
 
