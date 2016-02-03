@@ -1,4 +1,3 @@
-
 # require 'byebug'
 
 get '/' do
@@ -11,7 +10,6 @@ end
 post '/urls' do
 	# create new url
 	@new_url = Url.new(long_url: params[:long_url])
-	@new_url.shorten
 	@new_url.save
 
 	redirect '/success' # Redirect users to a new page
@@ -24,6 +22,7 @@ end
 
 get '/:short_url' do # put : will become params
 	@url = Url.find_by(short_url: params[:short_url])
+	@url.update_click_count
 	redirect "#{@url.long_url}"
 end
 

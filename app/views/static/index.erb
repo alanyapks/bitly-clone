@@ -1,3 +1,5 @@
+
+
 <h1>Hello World</h1>
 <p>Hi this is me</p>
 <p>See Me in views/static/index.html.erb</p>
@@ -16,8 +18,10 @@
 		<li><%= url.long_url %></li> 
 	<% end%>
 </ul>
+ "-------------------------"
 <ul>
 	<% @urls.each do |url| %> 
  		<li><%= url.short_url %></li>
+ 		<li><%= url.click_count %></li>
 	<% end%>
 </ul>
