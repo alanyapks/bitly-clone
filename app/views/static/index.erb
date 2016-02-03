@@ -11,6 +11,7 @@
 	<input type = "submit" value = "Submit">
 </form>
 
+<h2><%= @error%></h2>
 <ul>
 <%# The reason use each do is because the @urls is an array%>
 	<% @urls.each do |url| %> 

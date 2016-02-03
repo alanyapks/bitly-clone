@@ -2,6 +2,7 @@
 
 get '/' do
 	@urls = Url.all
+	@error = params['error'] # Woll print out the error message
 	puts "[LOG] Getting /"
 	puts "[LOG] Params: #{params.inspect}"
   erb :"static/index"
@@ -10,9 +11,15 @@ end
 post '/urls' do
 	# create new url
 	@new_url = Url.new(long_url: params[:long_url])
-	@new_url.save
+	if @new_url.save
+		redirect '/' # Redirect users to a new page
+	else
+		@errors = @new_url.errors.messages[:long_url].to_s
+		# After the ? will be params and the @errors will be hash
+		redirect "/?error=#{@errors}" 
+	end
 
-	redirect '/success' # Redirect users to a new page
+	
 end
 
 get '/success' do

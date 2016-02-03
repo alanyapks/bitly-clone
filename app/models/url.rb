@@ -2,7 +2,8 @@
 
 class Url < ActiveRecord::Base
 	# This is Sinatra! Remember to create a migration!
-	validates :long_url, presence: true, format: { with: /(http:\/\/|https:\/\/|ftp:\/\/)?(www.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/ix, message:"This is not valid" }
+	validates :long_url, presence: true, format: { with: /(http:\/\/|https:\/\/|ftp:\/\/)?(www.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/ix, message:"Is this even a website?" }
+	# validates :short_url, presence: true, format: { with: }
 	before_create :shorten # Call back method
 
 	def shorten
